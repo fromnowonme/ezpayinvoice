@@ -13,8 +13,8 @@ function generateInvoiceCsv() {
   
   let serial_number_increment = 0;
   
-  // 表頭記錄
-  let csvContent = 'H,INVO,C11231776956,332637694,' + sheetName + ',,,,,,,,,,,\n';
+  // 表頭記錄 這裡要改 ezPay電子發票會員編號、商店代號 這兩個
+  let csvContent = 'H,INVO,C12231771956,326376941,' + sheetName + ',,,,,,,,,,,\n';
   let hasError = false;
   let errorMessage = '';
   
@@ -50,12 +50,13 @@ function generateInvoiceCsv() {
     hasError = true;
     errorMessage = error.message;
   }
-  
-  const fileName = '332637694_' + sheetName + '.csv';
+
+  // 同一區的最下面我有設定生成的檔案檔名，這裡也要改成你的商店代號
+  const fileName = '326376941_' + sheetName + '.csv';
   const blob = Utilities.newBlob(csvContent, 'text/csv', fileName);
   
-  // 指定文件夾 ID
-  const folderId = '1hwnEhYitCMIdaWUkzr6uFrj89eDCm2ev';
+  // 指定文件夾 ID 後面改成你雲端後面的網址 https://drive.google.com/drive/u/1/folders/ 這串後面的網址
+  const folderId = '1hwnEhYitCMIdaWUkzr6uFrj89eDCm';
   const folder = DriveApp.getFolderById(folderId);
   const file = folder.createFile(blob);
   const fileUrl = file.getUrl();
